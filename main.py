@@ -63,7 +63,7 @@ def error_admin(error):
 
 
 
-@app.route("/admin-panel", methods=['GET', 'POST'])
+@app.route("/secret", methods=['GET', 'POST']). # secret isnt the actual url but i prefer not to write it there 
 def admin_panel():
     if request.method == 'POST':
         # check if the post request has the file part
