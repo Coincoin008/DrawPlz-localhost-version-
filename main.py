@@ -55,7 +55,7 @@ def confirm_admin():
     if error:
         return redirect(url_for("error_admin", error=error_name))
     else :
-        return redirect("/admin-panel")
+        return redirect("/secret")
 
 @app.route("/error-admin/<error>")
 def error_admin(error):
