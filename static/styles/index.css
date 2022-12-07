@@ -1,0 +1,47 @@
+#img-div{
+    display: block;
+    float: left;
+    padding: 10px
+}
+
+
+
+
+.draw {
+    height: 200px;
+    width: 200px;
+}
+
+
+.top-title {
+    padding-left: 20%;
+    font-family: 'Helvetica';
+}
+
+#full-size-picture {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: contain;
+    background-repeat: no-repeat no-repeat;
+    background-position: center center;
+    background-color: black;
+  }
+
+
+#where-button-is img {
+    height: 30px;
+    width: 30px;
+    padding-top: 10px;
+}
+
+#where-button-is p{
+    display: block;
+    float: right;
+    padding-right: 20px;
+    font-family: Helvetica;
+}
