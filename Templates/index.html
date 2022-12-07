@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Le Blog Dessin !</title>
+        <link href="{{ url_for('static', filename='styles/index.css')}}" rel="stylesheet"/>
+    </head>
+
+    <body>
+
+        <h1 class="top-title">LES DESSINS D'ELLIOT</h1>
+        <a href="/admin-connect">Se connecter en tant qu'admin</a>
+        
+       <div class="draws">
+        {% for image in images%}
+            <div id="img-div" class="{{ image[:-4] }}">
+                <img class="draw" src="{{ url_for('static', filename=image)}}"/> <br>
+                <div id="where-button-is" class="where-button-is-{{ image[:-4] }}">
+                    <img id="{{ image[:-4] }}" onclick="like(this.id)"/>
+                    <p>{{ nLikes[image]['likes']}} likes</p>
+                </div>
+            </div>
+        {% endfor %}
+       </div>
+
+
+
+        <div id="full-size-picture" onclick="this.style.display='none';"></div>
+        
+    </body>
+</html>
+
+<script>
+
+const imgs = document.querySelectorAll('.draws .draw');
+const fullPage = document.querySelector('#full-size-picture');
+const imgs_divs = document.querySelectorAll('#img-div');
+
+
+imgs_divs.forEach(div_ => {
+    var localStorageIndex = div_.className // c'est l'index de l'image dans localStorage
+    var pathToDiv = ".where-button-is-"+div_.className
+    var whereButton = document.querySelector(pathToDiv) // la div ou y'a le boutton pour liker
+    if (localStorage.getItem(localStorageIndex) == "true") {
+        document.querySelector(pathToDiv + " img").src = "{{ url_for('static', filename='Asset/Index/liked.png') }}"
+    } else {
+        document.querySelector(pathToDiv + " img").src = "{{ url_for('static', filename='Asset/Index/like.png') }}"
+    }
+
+})  
+
+
+imgs.forEach(img => {
+    img.addEventListener('click', function() {
+    fullPage.style.backgroundImage = 'url(' + img.src + ')';
+    fullPage.style.display = 'block';
+  });
+});
+
+
+
+var like = (picture) => {
+    var isLiked = localStorage.getItem(picture)
+    if (isLiked == "true"){ // si la photo a été likée sur cet appareil
+        var like = "False"
+    } else {
+        var like = "True"
+    }
+    localStorage.setItem(picture, like.toLowerCase())
+    console.log(" Chipolata ")
+    location.href = '/background_process_test?picture=' + picture + ".jpg&like=" + String(like)
+}
+
+</script>
+
+
+

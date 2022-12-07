@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Panel de l'administrateur</title>
+    </head>
+
+    <body>
+
+        <h1 class="top-big-title"> Panel de l'administrateur</h1>
+        <div class="feature">
+
+
+           <fieldset  style="width:500px">
+            <legend>Ajouter une photo</legend>
+                <form method="POST" action="" enctype="multipart/form-data">
+                    <input type="file" name="file"/> <br>
+                    <button type="submit">Ajouter</button>
+                </form>
+           </fieldset>
+            
+        </div>
+
+        <div class="feature">
+            <fieldset>
+                <legend>Supprimer une photo</legend>
+                
+                <form method="post">
+                    {% for picture in pictures%}
+
+                        <input type="radio" name="picture-to-delete" value={{ picture }} id= {{ picture }}/>
+                        <label for={{ picture }}> {{ picture }}</label> <br>
+
+                    {% endfor %}
+                    
+                    <button type="submit">Supprimer</button>
+                </form>
+
+            </fieldset>
+        </div>
+    </body>
+</html>
+
+<style>
+
+.top-big-title {
+    font-size:50px;
+}
+
+
+
+
+</style>
